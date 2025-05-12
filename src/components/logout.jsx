@@ -1,0 +1,9 @@
+import React from 'react'
+
+export default function logout() {
+  return (
+    <div>
+      <button className='px-3 py-2 bg-red-500 text-white rounded-md cursor-pointer'>Logout</button>
+    </div>
+  )
+}
