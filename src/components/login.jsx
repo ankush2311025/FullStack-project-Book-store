@@ -22,12 +22,17 @@ export default function login() {
       console.log(res.data);
       if(res.data){
         toast.success('Loggedin Successfully!');
+        setTimeout(() => {
+          window.location.reload();
+      localStorage.setItem("Users", JSON.stringify(res.data.user));
+        }, 2000);
+        
       }
-      localStorage.setItem("user", JSON.stringify(res.data.user));
     }).catch((err)=>{
       console.log(err);
       
       toast.error("User Already Exist");
+      setTimeout(()=>{}, 2000);
     })};
   return (
     <div>

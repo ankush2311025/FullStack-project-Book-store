@@ -2,7 +2,7 @@
 import React from 'react';
 
 export default function Cards({ item }) {
-  console.log(item);
+
 
   // Check if item is undefined or null before rendering the card.
   if (!item) {

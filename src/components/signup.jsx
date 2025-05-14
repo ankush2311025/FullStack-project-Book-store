@@ -1,10 +1,13 @@
 import toast, { Toaster } from 'react-hot-toast';
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,  useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import axios from 'axios';
 
 export default function Signup() {
+  const location = useLocation()
+  const Navigate = useNavigate()
+  const fron = location.state?.from?.pathname || "/"
   const {
     register,
     handleSubmit,
@@ -22,6 +25,8 @@ export default function Signup() {
       console.log(res.data);
       if(res.data){
         toast.success('Signed Successfully!');
+        Navigate(fron, {replace:true});
+        
       }
       localStorage.setItem("user", JSON.stringify(res.data.user));
     }).catch((err)=>{
@@ -30,24 +35,24 @@ export default function Signup() {
     })};
 
   return (
-    <div className='flex h-screen items-center justify-center bg-gray-100'>
-      <div className="border-2 shadow-md p-6 rounded-md relative bg-white w-[350px]">
+    <div className='flex h-screen items-center justify-center bg-gray-100  dark:bg-slate-900 dark:text-white'>
+      <div className="border-2 shadow-md p-6 rounded-md relative bg-white w-[350px]  dark:bg-slate-900 dark:text-white">
         {/* Close Button */}
-        <button
-          type="button"
+        <Link to ='/'
+          // type="button"
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => window.history.back()}
+
         >
           ✕
-        </button>
+        </Link>
 
-        <h3 className="font-bold text-lg text-center mb-4">Sign Up</h3>
+        <h3 className="font-bold text-lg text-center mb-4  dark:bg-slate-900 dark:text-white">Sign Up</h3>
 
         {/* Signup Form */}
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Name */}
           <div className="mb-3">
-            <label className="text-black block mb-1">Name</label>
+            <label className="text-black block mb-1  dark:bg-slate-900 dark:text-white">Name</label>
             <input
               type="text"
               placeholder="Enter your name"
@@ -59,7 +64,7 @@ export default function Signup() {
 
           {/* Email */}
           <div className="mb-3">
-            <label className="text-black block mb-1">Email</label>
+            <label className="text-black block mb-1  dark:bg-slate-900 dark:text-white">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -71,7 +76,7 @@ export default function Signup() {
 
           {/* Password */}
           <div className="mb-4">
-            <label className="text-black block mb-1">Password</label>
+            <label className="text-black block mb-1  dark:bg-slate-900 dark:text-white">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
@@ -89,7 +94,7 @@ export default function Signup() {
             >
               Sign Up
             </button>
-            <p className="text-sm text-black">
+            <p className="text-sm text-black  dark:bg-slate-900 dark:text-white">
               Already registered?
               <Link to="/" className="underline text-blue-500 ml-1">Login!</Link>
             </p>
