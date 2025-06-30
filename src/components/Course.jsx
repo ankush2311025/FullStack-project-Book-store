@@ -10,7 +10,7 @@ export default function Course() {
   useEffect(() => {
     const getBook = async ()=> {
       try{
-      const res = await axios.get("http://localhost:3000/Books");
+      const res = await axios.get("https://bookstore-backend-alpha.vercel.app/Books");
       console.log(res.data);
       setBook(res.data);
       
